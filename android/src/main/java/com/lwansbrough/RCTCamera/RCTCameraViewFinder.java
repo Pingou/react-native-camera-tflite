@@ -188,7 +188,12 @@ class RCTCameraViewFinder extends TextureView implements TextureView.SurfaceText
                 );
                 parameters.setPictureSize(optimalPictureSize.width, optimalPictureSize.height);
 
-                _camera.setParameters(parameters);
+                try {
+                    _camera.setParameters(parameters);
+                }
+                catch(RuntimeException e ) {
+                  Log.e("RCTCamera", "setParameters failed", e);
+                }
                 _camera.setPreviewTexture(_surfaceTexture);
                 _camera.startPreview();
                 // clear window background if needed
@@ -461,7 +466,12 @@ class RCTCameraViewFinder extends TextureView implements TextureView.SurfaceText
         }
         mFingerSpacing = newDist;
         params.setZoom(zoom);
-        _camera.setParameters(params);
+        try {
+            _camera.setParameters(params);
+        }
+        catch(RuntimeException e ) {
+          Log.e("RCTCamera", "setParameters failed", e);
+        }
     }
 
     /**

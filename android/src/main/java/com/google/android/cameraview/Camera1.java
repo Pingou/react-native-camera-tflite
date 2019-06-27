@@ -263,7 +263,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
         }
         if (mCameraParameters != null && mCamera != null) {
             mCameraParameters.setPictureSize(mPictureSize.getWidth(), mPictureSize.getHeight());
-            mCamera.setParameters(mCameraParameters);
+            try {
+              mCamera.setParameters(mCameraParameters);
+            }
+            catch(RuntimeException e ) {
+              Log.e("RCTCamera", "setParameters failed", e);
+            }
         }
     }
     
@@ -302,7 +307,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
             return;
         }
         if (setAutoFocusInternal(autoFocus)) {
+            try {
             mCamera.setParameters(mCameraParameters);
+            }
+            catch(RuntimeException e ) {
+              Log.e("RCTCamera", "setParameters failed", e);
+            }
         }
     }
 
@@ -321,7 +331,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
             return;
         }
         if (setFlashInternal(flash)) {
+            try {
             mCamera.setParameters(mCameraParameters);
+            }
+            catch(RuntimeException e ) {
+              Log.e("RCTCamera", "setParameters failed", e);
+            }
         }
     }
 
@@ -346,7 +361,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
             return;
         }
         if (setZoomInternal(zoom)) {
+            try {
             mCamera.setParameters(mCameraParameters);
+            }
+            catch(RuntimeException e ) {
+              Log.e("RCTCamera", "setParameters failed", e);
+            }
         }
     }
 
@@ -361,7 +381,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
             return;
         }
         if (setWhiteBalanceInternal(whiteBalance)) {
+            try {
             mCamera.setParameters(mCameraParameters);
+            }
+            catch(RuntimeException e ) {
+              Log.e("RCTCamera", "setParameters failed", e);
+            }
         }
     }
 
@@ -442,7 +467,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
                 mOrientation = options.getInt("orientation");
                 int rotation = orientationEnumToRotation(mOrientation);
                 mCameraParameters.setRotation(calcCameraRotation(rotation));
+                try {
                 mCamera.setParameters(mCameraParameters);
+                }
+                catch(RuntimeException e ) {
+                  Log.e("RCTCamera", "setParameters failed", e);
+                }
             }
 
             mCamera.takePicture(null, null, null, new Camera.PictureCallback() {
@@ -526,7 +556,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
         mDeviceOrientation = deviceOrientation;
         if (isCameraOpened() && mOrientation == Constants.ORIENTATION_AUTO) {
             mCameraParameters.setRotation(calcCameraRotation(deviceOrientation));
+            try {
             mCamera.setParameters(mCameraParameters);
+            }
+            catch(RuntimeException e ) {
+              Log.e("RCTCamera", "setParameters failed", e);
+            }
          }
     }
 
@@ -645,7 +680,12 @@ class Camera1 extends CameraViewImpl implements MediaRecorder.OnInfoListener,
         setZoomInternal(mZoom);
         setWhiteBalanceInternal(mWhiteBalance);
         setScanningInternal(mIsScanning);
-        mCamera.setParameters(mCameraParameters);
+        try {
+            mCamera.setParameters(mCameraParameters);
+        }
+        catch(RuntimeException e ) {
+              Log.e("RCTCamera", "setParameters failed", e);
+        }
         if (mShowingPreview) {
             startCameraPreview();
         }
