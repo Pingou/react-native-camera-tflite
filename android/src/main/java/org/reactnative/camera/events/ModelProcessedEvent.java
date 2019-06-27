@@ -68,7 +68,14 @@ public class ModelProcessedEvent extends Event<ModelProcessedEvent> {
 
   @Override
   public void dispatch(RCTEventEmitter rctEventEmitter) {
-    rctEventEmitter.receiveEvent(getViewTag(), getEventName(), serializeEventData());
+
+    try {
+      rctEventEmitter.receiveEvent(getViewTag(), getEventName(), serializeEventData());
+
+    }
+    catch(Exception e) {
+      
+    }
   }
 
   private WritableMap serializeEventData() {
