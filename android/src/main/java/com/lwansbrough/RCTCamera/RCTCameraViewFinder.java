@@ -3,7 +3,7 @@
  */
 
 package com.lwansbrough.RCTCamera;
-
+import android.util.Log;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
