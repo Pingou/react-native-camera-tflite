@@ -26,7 +26,7 @@ import android.support.v4.util.SparseArrayCompat;
 import android.view.SurfaceHolder;
 
 import com.facebook.react.bridge.ReadableMap;
-
+import android.util.Log;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;

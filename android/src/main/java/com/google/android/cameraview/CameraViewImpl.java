@@ -21,7 +21,7 @@ import android.view.View;
 import android.graphics.SurfaceTexture;
 
 import com.facebook.react.bridge.ReadableMap;
-
+import android.util.Log;
 import java.util.Set;
 import java.util.SortedSet;
 
