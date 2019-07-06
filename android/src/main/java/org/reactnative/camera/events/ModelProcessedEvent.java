@@ -4,7 +4,7 @@ import android.support.v4.util.Pools;
 import android.util.SparseArray;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
-
+import android.util.Log;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -68,7 +68,13 @@ public class ModelProcessedEvent extends Event<ModelProcessedEvent> {
 
   @Override
   public void dispatch(RCTEventEmitter rctEventEmitter) {
-    rctEventEmitter.receiveEvent(getViewTag(), getEventName(), serializeEventData());
+
+    try {
+      rctEventEmitter.receiveEvent(getViewTag(), getEventName(), serializeEventData());
+    }
+    catch(Exception e) {
+      Log.e("ModelProcessedEvent", e);
+    }
   }
 
   private WritableMap serializeEventData() {
