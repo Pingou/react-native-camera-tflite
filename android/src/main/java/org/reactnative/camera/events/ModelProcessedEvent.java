@@ -73,7 +73,7 @@ public class ModelProcessedEvent extends Event<ModelProcessedEvent> {
       rctEventEmitter.receiveEvent(getViewTag(), getEventName(), serializeEventData());
     }
     catch(Exception e) {
-      Log.e("ModelProcessedEvent", e.getMessage());
+      Log.e("error ModelProcessedEvent");
     }
   }
 
