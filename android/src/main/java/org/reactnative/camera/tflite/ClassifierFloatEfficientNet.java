@@ -26,8 +26,8 @@ import org.tensorflow.lite.support.common.ops.NormalizeOp;
 public class ClassifierFloatEfficientNet extends Classifier {
 
 
-  //private static final float IMAGE_MEAN = 127.0f;
-  //private static final float IMAGE_STD = 128.0f;
+//  private static final float IMAGE_MEAN = 127.0f;
+ // private static final float IMAGE_STD = 128.0f;
 
   private static final float IMAGE_MEAN = 0.0f;
   private static final float IMAGE_STD = 255.0f;
@@ -39,7 +39,7 @@ public class ClassifierFloatEfficientNet extends Classifier {
   private static final float PROBABILITY_MEAN = 0.0f;
 
   private static final float PROBABILITY_STD = 1.0f;
-
+// private static final float PROBABILITY_STD = 255.0f;
   /**
    * Initializes a {@code ClassifierFloatMobileNet}.
    *
