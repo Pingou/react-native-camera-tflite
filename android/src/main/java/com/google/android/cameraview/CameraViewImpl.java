@@ -24,6 +24,7 @@ import com.facebook.react.bridge.ReadableMap;
 import android.util.Log;
 import java.util.Set;
 import java.util.SortedSet;
+import android.media.Image;
 
 abstract class CameraViewImpl {
 
@@ -76,6 +77,10 @@ abstract class CameraViewImpl {
 
     abstract int getFlash();
 
+    abstract void setExposureCompensation(float exposure);
+
+    abstract float getExposureCompensation();
+
     abstract void takePicture(ReadableMap options);
 
     abstract boolean record(String path, int maxDuration, int maxFileSize,
@@ -83,9 +88,13 @@ abstract class CameraViewImpl {
 
     abstract void stopRecording();
 
+    abstract int getCameraOrientation();
+
     abstract void setDisplayOrientation(int displayOrientation);
 
     abstract void setDeviceOrientation(int deviceOrientation);
+    
+    abstract void setFocusArea(float x, float y);
 
     abstract void setFocusDepth(float value);
 
@@ -121,7 +130,7 @@ abstract class CameraViewImpl {
 
         void onVideoRecorded(String path, int videoOrientation, int deviceOrientation);
 
-        void onFramePreview(byte[] data, int width, int height, int orientation);
+        void onFramePreview(Image image, byte[] data, int width, int height, int orientation);
 
         void onMountError();
     }

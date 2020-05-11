@@ -1,6 +1,6 @@
 package org.reactnative.camera;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.common.MapBuilder;
@@ -25,6 +25,7 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
     EVENT_ON_BARCODE_DETECTION_ERROR("onGoogleVisionBarcodeDetectionError"),
     EVENT_ON_TEXT_RECOGNIZED("onTextRecognized"),
     EVENT_ON_MODEL_PROCESSED("onModelProcessed"),
+    EVENT_ON_TF_PROCESSED("onTFProcessed"),
     EVENT_ON_PICTURE_TAKEN("onPictureTaken"),
     EVENT_ON_PICTURE_SAVED("onPictureSaved");
 
@@ -84,6 +85,11 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
     view.setFlash(torchMode);
   }
 
+  @ReactProp(name = "exposure")
+  public void setExposureCompensation(RNCameraView view, float exposure){
+    view.setExposureCompensation(exposure);
+  }
+
   @ReactProp(name = "autoFocus")
   public void setAutoFocus(RNCameraView view, boolean autoFocus) {
     view.setAutoFocus(autoFocus);
@@ -92,6 +98,13 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   @ReactProp(name = "focusDepth")
   public void setFocusDepth(RNCameraView view, float depth) {
     view.setFocusDepth(depth);
+  }
+
+  @ReactProp(name = "autoFocusPointOfInterest")
+  public void setAutoFocusPointOfInterest(RNCameraView view, ReadableMap coordinates) {
+    float x = (float) coordinates.getDouble("x");
+    float y = (float) coordinates.getDouble("y");
+    view.setAutoFocusPointOfInterest(x, y);
   }
 
   @ReactProp(name = "zoom")
@@ -156,6 +169,11 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
     view.setFaceDetectionClassifications(classifications);
   }
 
+  @ReactProp(name = "trackingEnabled")
+  public void setTracking(RNCameraView view, boolean trackingEnabled) {
+    view.setTracking(trackingEnabled);
+  }
+  
   @ReactProp(name = "googleVisionBarcodeDetectorEnabled")
   public void setGoogleVisionBarcodeDetecting(RNCameraView view, boolean googleBarcodeDetectorEnabled) {
     view.setShouldGoogleDetectBarcodes(googleBarcodeDetectorEnabled);
@@ -183,6 +201,6 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
     int inputDimY = model.getInt("inputDimY");
     int outputDim = model.getInt("outputDim");
     int freqms = model.hasKey("freqms") ? model.getInt("freqms") : 0;
-    view.setModelFile(modelFile, inputDimX, inputDimY, outputDim, freqms);
+    //view.setModelFile(modelFile, inputDimX, inputDimY, outputDim, freqms);
   }
 }
