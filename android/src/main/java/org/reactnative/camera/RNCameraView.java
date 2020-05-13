@@ -403,6 +403,9 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
       @Override
       public void run() {
         if (classifier != null) {
+
+
+          try {
           final List<Classifier.Recognition> results =
                   classifier.recognizeImage(rgbFrameBitmap, orientation);
 
@@ -429,6 +432,10 @@ public class RNCameraView extends CameraView implements LifecycleEventListener, 
 
             }
           });
+
+          }
+          catch (Exception e) {
+          }
 
         }
         isProcessingFrame = false;
